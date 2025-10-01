@@ -46,7 +46,7 @@ class SRT_HDF_Reader:
 
     def get_time(self) -> np.ndarray:
         """Return measurement times as numpy datetime64 array."""
-        epoch = np.datetime64('1904-01-01T01:00:00')  # TBD: confirm epoch
+        epoch = np.datetime64('1904-01-01T00:00:00')
         return epoch + self.data['Positioning']['TrueTime'][...].astype('timedelta64[s]')
 
     def get_object_positions(self) -> dict:
@@ -54,7 +54,7 @@ class SRT_HDF_Reader:
         pos = self.data['Positioning']
         return {
             'Azimuth': pos['ObjectPosition']['Azimuth'][...],
-            'Elevation': pos['ObjectPosition']['elevation'][...],
+            'Elevation': pos['ObjectPosition']['elevation'][...], # lowercase 'elevation' is a type in the original data!
             'CenterH': pos['ObjectOffset']['CenterH'][...],
             'CenterV': pos['ObjectOffset']['CenterV'][...],
             'TrueAzimuth': pos['TrueMeasurementPosition']['Azimuth'][...],
