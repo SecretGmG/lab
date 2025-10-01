@@ -1,0 +1,91 @@
+#####################################################################
+# Telescope access and data export
+#####################################################################
+
+_____/ Access to the SRT servers \_____
+
+Currently access is two-step process: 
+PC -> NewSRT (server) -> OldSRT (server)
+
+0. (falls extern) erstelle VPN Verbindung zum Uni-Netzwerk
+1. Install remote desktop client (e.g. Remmina) and create session to access NewSRT.
+   Create connection: RDP
+   server: srt2025.mw.iap.unibe.ch
+   username: SRT
+   password: SRT,user
+   Shared folder (on Remmina): choose some folder on your computer for transferring data (***)
+3. On NewSRT, you find "OldSRT.rdp". That sets up the remote connection to OldSRT.
+
+_____/ Start the measurements \_____
+
+1. On the OldSRT server, open the labview program: "C:\Users\SRTPraktikum\Desktop\SRT.vi"
+2. Store your measurements here: "D:\SRTMeasurements\SRT_HS25"
+
+_____/ Visual telescope monitoring \_____
+
+There are two camera. Both can be accessed from NewPC - Reolink.
+- Camera 1 shows the telescope. This camera can also be accessed from your PC.
+  http://srtcam.mw.iap.unibe.ch
+  username: SRT
+  password: SRT,user
+- Camera 2 is mounted on the telescope, approximately pointing along antenna boresight.
+  https://192.168.1.4/?1758024379195
+  username: SRT
+  password: SRT,user
+
+_____/ Copy data to your computer \_____
+
+At the moment, a practical way is the following:
+1. On NewSRT: open file browser and type \\tsclient (***: this should show a link to your PC)
+2. Copy the data from OldSRT to NewSRT \\tsclient
+3. Copy the data to the desired location on your computer.
+... if you would suggest another more practical method e.g. via shell, please feel free to share it.
+
+_____/ Reading the data \_____
+
+The data has an old hdf5-alike format that can be opened with HDFView2.8 installed on OldPC.
+However, the format seems somehow non-standard.
+Matlab can read the file, but other modern versions of HDFView/numpy/... have problems with it.
+Suggestion: convert the data to json, e.g. here: https://myhdf5.hdfgroup.org/
+... any better solution is of course very welcome!
+
+#####################################################################
+# Comments
+#####################################################################
+
+Peculiarities of the measurement setup.
+- Unknown: currently the spectrum has lots of spikes (whereas it should not)... the reason is not quite clear. Any idea?
+- Caution: spectrum might be swapped (just a relict of the measurement process and nothing to worry): just swap if necessary based on your interpretation of the rotation curve.
+
+To keep in mind for the report.
+- Concise and readable text with logic thread. Suggestion for efficiency and logic: 
+  1. Write outlines for each section (not continuous text).
+  2. Write continuous text.
+- Use clear/unambiguous and consistent notation for math. symbols.
+- "Theoretical exercises" need not necessarily be answered one by one. You can also address the questions in a well-formatted main body of text.
+- References: complete and well-formatted. Book references with page number. No internet references.
+- Value uncertainty propagation (generalized least squares, ...).
+- Extra exercises can be customized: rotation curve, conceptual interests, ...
+
+Submission.
+- PDF-report (start drafting early. 
+- Data (please use logic filenames).
+- Code:
+  > Please use comprehensible structure and comments.
+  > Different scripts for different analysis/plots (use logic filenames that can be easily linked to data).
+- Outputs: figures generated/exported from code (use logic filenames that can easilb be linked to code/data).
+
+#####################################################################
+# More references
+#####################################################################
+
+- Standard textbook in radiometry (see ch. 6):
+  Ulaby, F. & Long, D. Microwave Radar and Radiometric Remote Sensing (Artech House, 2015).
+- RSTN-RIMS telescope network for solar flux monitoring:
+  https://www.ngdc.noaa.gov/stp/space-weather/solar-data/solar-features/solar-radio/rstn-1-second/
+  Learmonth has also separate web-page (with more complete documentation): https://www.sws.bom.gov.au/World_Data_Centre/1/10
+- EOVSA solar flux monitoring:
+  https://ovsa.njit.edu/browser/?suntoday_date=2025-02-01
+- Rotation curve example (but not quite reference literature):
+  https://euhou.obspm.fr/public/Milky_Way_Rotation_A4.pdf
+
