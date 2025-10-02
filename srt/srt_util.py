@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import h5py
 
 # HDF5 structure:
@@ -96,3 +97,9 @@ CARRIER_FREQ = 1.4204e9 # Hz
 SPECTROMETER_STEPSIZE = 3906 # Hz
 SPECTROMETER_FREQUENCIES = CARRIER_FREQ + SPECTROMETER_STEPSIZE * np.arange(-256,256)
 SPECTROMETER_XTICKS = (CARRIER_FREQ + SPECTROMETER_STEPSIZE * np.arange(-256,257))[::64]/1e6
+
+def plot_spectrum(spec: np.ndarray,label : str = '', x_scale : float = 1, ax = None):
+    # Tell Matplotlib to use offset/scientific notation
+    plt.plot(SPECTROMETER_FREQUENCIES / x_scale,spec, label = label)
+    plt.xticks(SPECTROMETER_XTICKS)
+    plt.ticklabel_format(axis='x', style='sci', useOffset=CARRIER_FREQ/x_scale)
