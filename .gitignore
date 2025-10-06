@@ -226,3 +226,8 @@ __marimo__/
 *.out
 *.run.xml
 *.synctex.gz
+*.bbl
+*.bbl-SAVE-ERROR
+*.blg
+
+*.pdf

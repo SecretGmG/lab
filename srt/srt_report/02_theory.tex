@@ -1,6 +1,60 @@
 
 \section{Theory}
-Present the physics background relevant to the experiments, not device manuals.
-For example.
-test citation 
-\cite[20]{ftb}
+
+
+
+
+\subsection[Origin of the HI-Line]{Origin of the \ce{H_I}-Line}
+
+\subsection{Angular resolution of the SRT}
+Using the equation relating the Effective area $A_e$ and the wavelength $\lambda$ \cite[p. 149 (7.11)]{wilson}
+\begin{equation}
+    A_e \Omega_A = \lambda^2
+\end{equation}
+With the definition of the Effective area and the Geometric area
+\begin{equation}
+    A_e = \eta A_g \qquad A_g = \pi \left( \frac{d}{2} \right) \label{eq:A_e}
+\end{equation}
+we can then solve for the Effective antenna area.
+\begin{equation}
+    \Omega_A = \frac{\lambda^2}{A_g \eta} \label{eq:Omega_A}
+\end{equation}
+We only need to relate a solid-angle $\Omega$ to an angular resolution $\theta$ now. We define $\theta$ to be the half-angle that spans the solid-angle $\Omega$ on the unit sphere and thus arrive at the following expresion.
+\begin{align}
+    \Omega = \int_{0}^{2\pi} d\phi \int_{0}^{\theta} d\vartheta \sin(\vartheta) \notag \\
+    \Omega = 4 \pi \sin^2 \left( \frac{\theta}{2} \right) \simeq \pi \theta^2 \label{eq:solid_angle}
+\end{align}
+By inserting \eqref{eq:A_e} and \eqref{eq:solid_angle} into \eqref{eq:Omega_A} and solving for $\theta$ we get the final result.
+\begin{equation}
+    \theta = \sqrt{\frac{\Omega_A}{\pi}} = \sqrt{\frac{4\lambda^2}{\frac{1}{4} \pi d^2 \eta \pi}} = \frac{\lambda}{d} \frac{2}{\pi \sqrt{\eta}}
+\end{equation}
+
+To compute the angular resolution we need the diameter of the SRT which is $d = \SI{4}{m}$ \cite[p. 4]{srt}, and the antenna efficiency which is $\eta = 0.5$ \cite[p. 2]{srt}.
+We thus arrive at the following values
+\begin{table}[h]
+    \centering
+    \begin{tabular}{rrr}
+        \toprule
+        Angular resolution $\theta$ & Wavelength $\lambda$ & Frequency\\
+        \midrule
+        \SI{2.723}{\degree} & \SI{21.11}{cm} & \SI{1.420}{\giga \hertz}\\
+        \SI{0.387}{\degree} & \SI{2.998}{mm} & \SI{10.000}{\giga \hertz}\\
+        \bottomrule
+    \end{tabular}
+    \caption{Angular resoltution of the SRT at diffrent frequencies}
+    \label{tab:ang_res}
+\end{table}
+
+
+\subsection{Antenna, brightness and noise temperature}
+
+\subsection{Temperature conversion}
+
+\subsection{Expected temperature of the sun}
+If we assume that the sun is a black body near the wavelength of \SI{1.42}{\giga\hertz} we expect it to have a brightness temperature of $T_{\odot} = \SI{}{}$ \cite{ftb}.
+We have to concider however, that the half-angle size of the sun is less than the angular resolution we computed in table \ref{tab:ang_res}
+
+
+\subsection{Influence of elevation angle}
+
+\subsection{Dopper shift}
