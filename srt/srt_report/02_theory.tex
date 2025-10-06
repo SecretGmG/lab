@@ -6,31 +6,33 @@
 
 \subsection[Origin of the HI-Line]{Origin of the \ce{H_I}-Line}
 
-\subsection{Angular resolution of the SRT}
-Using the equation relating the Effective area $A_e$ and the wavelength $\lambda$ \cite[p. 149 (7.11)]{wilson}
+\subsection{Angular resolution of the SRT}\label{sec:ang_res}
+Using the equation relating the effective area $A_e$ and the wavelength $\lambda$ \cite[p. 149 (7.11)]{wilson}
 \begin{equation}
     A_e \Omega_A = \lambda^2
 \end{equation}
-With the definition of the Effective area and the Geometric area
+Using the definitions of the effective area and the geometric area
 \begin{equation}
     A_e = \eta A_g \qquad A_g = \pi \left( \frac{d}{2} \right) \label{eq:A_e}
 \end{equation}
-we can then solve for the Effective antenna area.
+we can then solve for the effective antenna area.
 \begin{equation}
     \Omega_A = \frac{\lambda^2}{A_g \eta} \label{eq:Omega_A}
 \end{equation}
-We only need to relate a solid-angle $\Omega$ to an angular resolution $\theta$ now. We define $\theta$ to be the half-angle that spans the solid-angle $\Omega$ on the unit sphere and thus arrive at the following expresion.
+We only need to relate a solid-angle $\Omega$ to an angular resolution $\theta$ now. We define $\theta$ to be the half-angle that spans the solid-angle $\Omega$ on the unit sphere and thus arrive at the following expression.
 \begin{align}
     \Omega = \int_{0}^{2\pi} d\phi \int_{0}^{\theta} d\vartheta \sin(\vartheta) \notag \\
     \Omega = 4 \pi \sin^2 \left( \frac{\theta}{2} \right) \simeq \pi \theta^2 \label{eq:solid_angle}
 \end{align}
-By inserting \eqref{eq:A_e} and \eqref{eq:solid_angle} into \eqref{eq:Omega_A} and solving for $\theta$ we get the final result.
+By solving \eqref{eq:solid_angle} for $\theta$ and inserting \eqref{eq:Omega_A} and \eqref{eq:A_e} we get the final result.
 \begin{equation}
-    \theta = \sqrt{\frac{\Omega_A}{\pi}} = \sqrt{\frac{4\lambda^2}{\frac{1}{4} \pi d^2 \eta \pi}} = \frac{\lambda}{d} \frac{2}{\pi \sqrt{\eta}}
+    \theta_A = \sqrt{\frac{\Omega_A}{\pi}} = \sqrt{\frac{\lambda^2}{\frac{1}{4} \pi d^2 \eta \pi}} = \frac{2\lambda}{\pi d \sqrt{\eta}} \label{eq:half_angle}
 \end{equation}
 
 To compute the angular resolution we need the diameter of the SRT which is $d = \SI{4}{m}$ \cite[p. 4]{srt}, and the antenna efficiency which is $\eta = 0.5$ \cite[p. 2]{srt}.
-We thus arrive at the following values
+Unfortunately we cannot reasonably estimate an error for the antenna efficiency $\eta$, we suspect however that the error of the antenna efficiency dominates here. 
+Therefore we will waive a proper error discussion here.
+We obtain the values shown in table \ref{tab:ang_res}.
 \begin{table}[h]
     \centering
     \begin{tabular}{rrr}
@@ -41,29 +43,43 @@ We thus arrive at the following values
         \SI{0.387}{\degree} & \SI{0.30}{cm} & \SI{10.000}{\giga \hertz}\\
         \bottomrule
     \end{tabular}
-    \caption{Angular resoltution of the SRT at diffrent frequencies}
+    \caption{Angular resolution of the SRT at different frequencies}
     \label{tab:ang_res}
 \end{table}
 
+It is important to note that this angle is the half of the equivalent beam width, not the full width at half maximum, but this value will become useful in subsection \ref{sec:temp}.
+
+To compute an approximation of the FWHM we can approximate the aperture as gaussian \cite[p. 2]{script} and note the following properties.
+\begin{equation}
+    \Omega_A = \int_{4\pi} d\Omega \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} \simeq 4\pi \sigma^2
+\end{equation}
+\begin{equation}
+    \exp{\left( -\frac{(\theta_{FWHM}/2)^2}{2\sigma^2}\right)} = \frac{1}{2} \quad \implies \quad \theta_{\text{FWHM}} = 2 \sqrt{2\ln{2}} \sigma \label{eq:FWHM}
+\end{equation}
+using equations \eqref{eq:half_angle} - \eqref{eq:FWHM} we can then solve for $\theta_{\text{FWHM}}$
+\begin{equation}
+    \theta_{\text{FWHM}} = \sqrt{2\ln{2}} \, \theta_A
+\end{equation}
 
 \subsection{Antenna, brightness and noise temperature}
 
 \subsection{Temperature conversion}
 
-\subsection{Expected temperature of the sun}
+\subsection{Expected temperature of the sun}\label{sec:temp}
 If we assume that the sun is a black body near the wavelength of \SI{1.42}{\giga\hertz} we expect it to have a brightness temperature of $T_{\odot} = \SI{5778}{\kelvin}$ \cite[p. 211]{ftb}.
-We have to concider however, that the half-angle size of the sun with a value of \SI{16}{\arcminute} \cite[p. 211]{ftb} is less than the angular resolution we computed in table \ref{tab:ang_res}.
+We have to consider however, that the half-angle size of the sun with a value of \SI{16}{\arcminute} \cite[p. 211]{ftb} is less than the angular resolution we computed in table \ref{tab:ang_res}.
 Because the power measured by the telescope and the brightness temperature have a linear relationship knowing the beam filling factor $B$ will suffice.
 \begin{equation}
     B = \frac{\Omega_{\odot}}{\Omega_A} = \frac{\theta_{\odot}^2}{\theta_A^2} = \SI{0.96
     }{\percent}
 \end{equation}
-We know that the sky itself will also contribute a temperature of $T_{\text{sky}} = \SI{2.7}{\kelvin}$ \cite[p. 4]{script}, thus we arrive at the final result.
+We know that the sky itself will also contribute a temperature of $T_{\text{sky}} = \SI{2.7}{\kelvin}$ \cite[p. 4]{script}, thus we obtain at the final result.
 \begin{equation}
     T_{\text{measured}} = B T_{\odot} (1-B) T_{\text{sky}} = \SI{58}{\kelvin}
 \end{equation}
+This result is given without error due to the same reasons as in section \ref{sec:ang_res}
 
 
 \subsection{Influence of elevation angle}
 
-\subsection{Dopper shift}
+\subsection{Doppler shift}
