@@ -10,8 +10,12 @@
 \usepackage[version=4]{mhchem}
 \usepackage{braket}
 \usepackage{siunitx}
-\sisetup{input-digits = 0123456789\pi}
-\sisetup{separate-uncertainty=true}
+\sisetup{
+    input-digits = 0123456789\pi,
+    separate-uncertainty,
+    table-align-uncertainty,
+    table-number-alignment = center
+}
 %to compile Feynman diagrams: uncomment these
 %can take a lot of compile time, set the compiler to LuaLaTex
 %\usepackage[compat=1.1.0]{tikz-feynman}
