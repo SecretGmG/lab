@@ -1,4 +1,3 @@
-
 \section{Theory}
 
 
@@ -7,11 +6,11 @@
 \subsection[Origin of the HI-Line]{Origin of the \ce{H_I}-Line}
 
 \subsection{Angular resolution of the SRT}\label{sec:ang_res}
-Using the equation relating the effective area $A_e$ and the wavelength $\lambda$ \cite[p. 149 (7.11)]{wilson}
+Using the equation relating the effective area $A_e$ and the wavelength $\lambda$ \cite[p. 149]{wilson}
 \begin{equation}
     A_e \Omega_A = \lambda^2
 \end{equation}
-Using the definitions of the effective area and the geometric area
+and the definitions of the effective area and the geometric area \cite[p. 148]{wilson}
 \begin{equation}
     A_e = \eta A_g \qquad A_g = \pi \left( \frac{d}{2} \right) \label{eq:A_e}
 \end{equation}
@@ -22,7 +21,7 @@ we can then solve for the effective antenna area.
 We only need to relate a solid-angle $\Omega$ to an angular resolution $\theta$ now. We define $\theta$ to be the half-angle that spans the solid-angle $\Omega$ on the unit sphere and thus arrive at the following expression.
 \begin{align}
     \Omega = \int_{0}^{2\pi} d\phi \int_{0}^{\theta} d\vartheta \sin(\vartheta) \notag \\
-    \Omega = 4 \pi \sin^2 \left( \frac{\theta}{2} \right) \simeq \pi \theta^2 \label{eq:solid_angle}
+    \Omega = 4 \pi \sin^2 \left( \frac{\theta}{2} \right) \approx \pi \theta^2 \label{eq:solid_angle}
 \end{align}
 By solving \eqref{eq:solid_angle} for $\theta$ and inserting \eqref{eq:Omega_A} and \eqref{eq:A_e} we get the final result.
 \begin{equation}
@@ -30,28 +29,15 @@ By solving \eqref{eq:solid_angle} for $\theta$ and inserting \eqref{eq:Omega_A} 
 \end{equation}
 
 To compute the angular resolution we need the diameter of the SRT which is $d = \SI{4}{m}$ \cite[p. 4]{srt}, and the antenna efficiency which is $\eta = 0.5$ \cite[p. 2]{srt}.
-Unfortunately we cannot reasonably estimate an error for the antenna efficiency $\eta$, we suspect however that the error of the antenna efficiency dominates here. 
+Unfortunately we cannot reasonably estimate an error for the antenna efficiency $\eta$, we suspect however that the error of the antenna efficiency dominates here.
 Therefore we will waive a proper error discussion here.
-We obtain the values shown in table \ref{tab:ang_res}.
-\begin{table}[h]
-    \centering
-    \begin{tabular}{rrr}
-        \toprule
-        Angular resolution $\theta$ & Wavelength $\lambda$ & Frequency\\
-        \midrule
-        \SI{2.723}{\degree} & \SI{21.11}{cm} & \SI{1.420}{\giga \hertz}\\
-        \SI{0.387}{\degree} & \SI{0.30}{cm} & \SI{10.000}{\giga \hertz}\\
-        \bottomrule
-    \end{tabular}
-    \caption{Angular resolution of the SRT at different frequencies}
-    \label{tab:ang_res}
-\end{table}
 
 It is important to note that this angle is the half of the equivalent beam width, not the full width at half maximum, but this value will become useful in subsection \ref{sec:temp}.
 
 To compute an approximation of the FWHM we can approximate the aperture as gaussian \cite[p. 2]{script} and note the following properties.
 \begin{equation}
-    \Omega_A = \int_{4\pi} d\Omega \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} \simeq 4\pi \sigma^2
+    \Omega_A \approx \int_{4\pi } d\Omega\, \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} \approx 4\pi \int_0^{\infty} d\theta \, \theta \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} = 4\pi \sigma^2
+    \label{eq:gauss_integral}
 \end{equation}
 \begin{equation}
     \exp{\left( -\frac{(\theta_{FWHM}/2)^2}{2\sigma^2}\right)} = \frac{1}{2} \quad \implies \quad \theta_{\text{FWHM}} = 2 \sqrt{2\ln{2}} \sigma \label{eq:FWHM}
@@ -61,6 +47,20 @@ using equations \eqref{eq:half_angle} - \eqref{eq:FWHM} we can then solve for $\
     \theta_{\text{FWHM}} = \sqrt{2\ln{2}} \, \theta_A
 \end{equation}
 
+We can then obtain the values shown in table \ref{tab:ang_res}.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{rrrr}
+        \toprule
+        $\theta_{\text{FWHM}}$ & Angular resolution $\theta$ & Wavelength $\lambda$ & Frequency\\
+        \midrule
+        \SI{3.206}{\degree} &\SI{2.723}{\degree} & \SI{21.11}{cm} & \SI{1.420}{\giga \hertz}\\
+        \SI{0.455}{\degree} &\SI{0.387}{\degree} & \SI{0.30}{cm} & \SI{10.000}{\giga \hertz}\\
+        \bottomrule
+    \end{tabular}
+    \caption{Angular resolution of the SRT at different frequencies}
+    \label{tab:ang_res}
+\end{table}
 \subsection{Antenna, brightness and noise temperature}
 
 \subsection{Temperature conversion}
@@ -73,7 +73,7 @@ Because the power measured by the telescope and the brightness temperature have 
     B = \frac{\Omega_{\odot}}{\Omega_A} = \frac{\theta_{\odot}^2}{\theta_A^2} = \SI{0.96
     }{\percent}
 \end{equation}
-We know that the sky itself will also contribute a temperature of $T_{\text{sky}} = \SI{2.7}{\kelvin}$ \cite[p. 4]{script}, thus we obtain at the final result.
+We know that the sky itself will also contribute a temperature of $T_{\text{sky}} = \SI{2.7}{\kelvin}$ \cite[p. 4]{script}, thus we obtain the final result.
 \begin{equation}
     T_{\text{measured}} = B T_{\odot} (1-B) T_{\text{sky}} = \SI{58}{\kelvin}
 \end{equation}
