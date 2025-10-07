@@ -214,3 +214,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.toc
+*.bcf
+*.fdb_latexmk
+*.fls
+*.out
+*.run.xml
+*.synctex.gz
+*.bbl
+*.bbl-SAVE-ERROR
+*.blg
+
+*.pdf
