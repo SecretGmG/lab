@@ -15,44 +15,40 @@ we can then solve for the effective antenna area.
 \begin{equation}
     \Omega_A = \frac{\lambda^2}{A_g \eta} \label{eq:Omega_A}
 \end{equation}
-We only need to relate a solid-angle $\Omega$ to an angular resolution $\theta$ now. We define $\theta$ to be the half-angle that spans the solid-angle $\Omega$ on the unit sphere and thus arrive at the following expression.
-\begin{align}
-    \Omega = \int_{0}^{2\pi} d\phi \int_{0}^{\theta} d\vartheta \sin(\vartheta) \notag \\
-    \Omega = 4 \pi \sin^2 \left( \frac{\theta}{2} \right) \approx \pi \theta^2 \label{eq:solid_angle}
-\end{align}
-By solving \eqref{eq:solid_angle} for $\theta$ and inserting \eqref{eq:Omega_A} and \eqref{eq:A_e} we get the final result.
+
+
+To compute an approximation of the full width at half maximum $\theta$ (FWHM) we can approximate the aperture as gaussian \cite[p. 2]{srt} and note the following properties.
 \begin{equation}
-    \theta_A = \sqrt{\frac{\Omega_A}{\pi}} = \sqrt{\frac{\lambda^2}{\frac{1}{4} \pi d^2 \eta \pi}} = \frac{2\lambda}{\pi d \sqrt{\eta}} \label{eq:half_angle}
+    \Omega_A \approx \int_{4\pi } d\Omega\, \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} \approx 2\pi \int_0^{\infty} d\theta \, \theta \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} = 2\pi \sigma^2
+    \label{eq:gauss_integral}
+\end{equation}
+\begin{equation}
+    \exp{\left( -\frac{(\theta/2)^2}{2\sigma^2}\right)} = \frac{1}{2} \quad \implies \quad \theta = 2 \sqrt{2\ln{2}} \sigma \label{eq:FWHM}
+\end{equation}
+using equations \eqref{eq:gauss_integral} and \eqref{eq:FWHM} we can then solve for $\Omega_A$ in terms of $\theta$
+\begin{equation}
+    \Omega = \frac{\pi}{4\ln{2}} \theta \approx 1.133 \theta^2 \label{eq:Omega_A_fwhhm}
+\end{equation}
+Notice that this is consistent with \cite[p.178 (8.13)]{wilson}
+
+Equating \eqref{eq:Omega_A} and \eqref{eq:Omega_A_fwhhm} and then solving for $\theta$ we get an expression for the expected FWHM.
+\begin{equation}
+    \theta = \frac{4}{\pi} \sqrt{\frac{\ln{2}}{\eta}}\frac{\lambda}{d}
 \end{equation}
 
 To compute the angular resolution we need the diameter of the SRT which is $d = \SI{4}{m}$ \cite[p. 4]{srt}, and the antenna efficiency which is $\eta = 0.5$ \cite[p. 2]{srt}.
 Unfortunately we cannot reasonably estimate an error for the antenna efficiency $\eta$, we suspect however that the error of the antenna efficiency dominates here.
-Therefore we will waive a proper error discussion here.
-
-It is important to note that this angle is the half of the equivalent beam width, not the full width at half maximum, but this value will become useful in subsection \ref{sec:temp}.
-
-To compute an approximation of the FWHM we can approximate the aperture as gaussian \cite[p. 2]{script} and note the following properties.
-\begin{equation}
-    \Omega_A \approx \int_{4\pi } d\Omega\, \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} \approx 4\pi \int_0^{\infty} d\theta \, \theta \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} = 4\pi \sigma^2
-    \label{eq:gauss_integral}
-\end{equation}
-\begin{equation}
-    \exp{\left( -\frac{(\theta_{FWHM}/2)^2}{2\sigma^2}\right)} = \frac{1}{2} \quad \implies \quad \theta_{\text{FWHM}} = 2 \sqrt{2\ln{2}} \sigma \label{eq:FWHM}
-\end{equation}
-using equations \eqref{eq:half_angle} - \eqref{eq:FWHM} we can then solve for $\theta_{\text{FWHM}}$
-\begin{equation}
-    \theta_{\text{FWHM}} = \sqrt{2\ln{2}} \, \theta_A
-\end{equation}
+Therefore we will waive a proper error discussion at this point.
 
 We can then obtain the values shown in table \ref{tab:ang_res}.
 \begin{table}[H]
     \centering
     \begin{tabular}{rrrr}
         \toprule
-        $\theta_{\text{FWHM}}$ [\si{\degree}] & Angular resolution $\theta$ [\si{\degree}] & Wavelength $\lambda$ [\si{\degree}] & Frequency [\si{\giga \hertz}]\\
+        $\theta$ (FWHM) [\si{\degree}] & Wavelength $\lambda$ [\si{\degree}] & Frequency [\si{\giga \hertz}]\\
         \midrule
-        \num{3.206} &\num{2.723} & \num{21.11} & \num{1.420}\\
-        \num{0.455} &\num{0.387} & \num{0.30} & \num{10.000}\\
+        \num{4.533} & \num{21.11} & \num{1.420}\\
+        \num{0.688} & \num{0.30} & \num{10.000}\\
         \bottomrule
     \end{tabular}
     \caption{Angular resolution of the SRT at different frequencies}
