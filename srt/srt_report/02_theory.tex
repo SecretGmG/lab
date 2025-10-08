@@ -19,33 +19,33 @@ we can then solve for the effective antenna area.
 
 To compute an approximation of the full width at half maximum $\theta$ (FWHM) we can approximate the aperture as gaussian \cite[p. 2]{srt} and note the following properties.
 \begin{equation}
-    \Omega_A \approx \int_{4\pi } d\Omega\, \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} \approx 2\pi \int_0^{\infty} d\theta \, \theta \exp{\left( -\frac{\theta^2}{2\sigma^2} \right)} = 2\pi \sigma^2
+    \Omega_A \approx \int_{4\pi } d\Omega\, \exp{\left( -\frac{\vartheta^2}{2\sigma^2} \right)} \approx 2\pi \int_0^{\infty} d\vartheta \, \vartheta \exp{\left( -\frac{\vartheta^2}{2\sigma^2} \right)} = 2\pi \sigma^2
     \label{eq:gauss_integral}
 \end{equation}
 \begin{equation}
-    \exp{\left( -\frac{(\theta/2)^2}{2\sigma^2}\right)} = \frac{1}{2} \quad \implies \quad \theta = 2 \sqrt{2\ln{2}} \sigma \label{eq:FWHM}
+    \exp{\left( -\frac{(\theta/2)^2}{2\sigma^2}\right)} = \frac{1}{2} \quad \implies \quad \theta = 2 \sqrt{2\ln{2}} \sigma \label{eq:fwhm_sigma}
 \end{equation}
-using equations \eqref{eq:gauss_integral} and \eqref{eq:FWHM} we can then solve for $\Omega_A$ in terms of $\theta$
+using equations \eqref{eq:gauss_integral} and \eqref{eq:fwhm_sigma} we can then solve for $\Omega_A$ in terms of $\theta$
 \begin{equation}
-    \Omega = \frac{\pi}{4\ln{2}} \theta \approx 1.133 \theta^2 \label{eq:Omega_A_fwhhm}
+    \Omega_A = \frac{\pi}{4\ln{2}} \theta \approx 1.133 \, \theta^2 \label{eq:Omega_A_fwhhm}
 \end{equation}
 Notice that this is consistent with \cite[p.178 (8.13)]{wilson}
 
 Equating \eqref{eq:Omega_A} and \eqref{eq:Omega_A_fwhhm} and then solving for $\theta$ we get an expression for the expected FWHM.
 \begin{equation}
-    \theta = \frac{4}{\pi} \sqrt{\frac{\ln{2}}{\eta}}\frac{\lambda}{d}
+    \theta = \frac{4}{\pi} \sqrt{\frac{\ln{2}}{\eta}}\frac{\lambda}{d} \label{eq:fwhm}
 \end{equation}
 
-To compute the angular resolution we need the diameter of the SRT which is $d = \SI{4}{m}$ \cite[p. 4]{srt}, and the antenna efficiency which is $\eta = 0.5$ \cite[p. 2]{srt}.
+To compute the FWHM we need the diameter of the SRT which is $d = \SI{4}{m}$ \cite[p. 4]{srt}, and the antenna efficiency which is $\eta = 0.5$ \cite[p. 2]{srt}.
 Unfortunately we cannot reasonably estimate an error for the antenna efficiency $\eta$, we suspect however that the error of the antenna efficiency dominates here.
-Therefore we will waive a proper error discussion at this point.
+Therefore we will waive a proper error discussion at this point, and work with exact values.
 
 We can then obtain the values shown in table \ref{tab:ang_res}.
 \begin{table}[H]
     \centering
     \begin{tabular}{rrrr}
         \toprule
-        $\theta$ (FWHM) [\si{\degree}] & Wavelength $\lambda$ [\si{\degree}] & Frequency [\si{\giga \hertz}]\\
+        FWHM $\theta$ [\si{\degree}] & Wavelength $\lambda$ [\si{\degree}] & Frequency [\si{\giga \hertz}]\\
         \midrule
         \num{4.533} & \num{21.11} & \num{1.420}\\
         \num{0.688} & \num{0.30} & \num{10.000}\\
