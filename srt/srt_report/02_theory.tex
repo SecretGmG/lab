@@ -1,8 +1,8 @@
 \section{Theory}
+\subsection{Exercises}
+\subsubsection[Origin of the HI-Line]{Origin of the \ce{H_I}-Line}
 
-\subsection[Origin of the HI-Line]{Origin of the \ce{H_I}-Line}
-
-\subsection{Angular resolution of the SRT}\label{sec:ang_res}
+\subsubsection{Angular resolution of the SRT}\label{sec:ang_res}
 Using the equation relating the effective area $A_e$ and the wavelength $\lambda$ \cite[p. 149]{wilson}
 \begin{equation}
     A_e \Omega_A = \lambda^2
@@ -54,26 +54,15 @@ We can then obtain the values shown in table \ref{tab:ang_res}.
     \caption{Angular resolution of the SRT at different frequencies}
     \label{tab:ang_res}
 \end{table}
-\subsection{Antenna, brightness and noise temperature}
+\subsubsection{Antenna, brightness and noise temperature}
 
-\subsection{Temperature conversion}
+\subsubsection{Temperature conversion}
 
-\subsection{Expected temperature of the sun}\label{sec:temp}
+\subsubsection{Expected temperature of the sun}\label{sec:temp}
 If we assume that the sun is a black body near the wavelength of \SI{1.42}{\giga\hertz} we expect it to have a brightness temperature of $T_{\odot} = \SI{5778}{\kelvin}$ \cite[p. 211]{ftb}.
-We have to consider however, that the half-angle size of the sun with a value of \SI{16}{\arcminute} \cite[p. 211]{ftb} is less than the angular resolution we computed in table \ref{tab:ang_res}.
-Because the power measured by the telescope and the brightness temperature have a linear relationship knowing the beam filling factor $B$ will suffice.
-\begin{equation}
-    B = \frac{\Omega_{\odot}}{\Omega_A} = \frac{\theta_{\odot}^2}{\theta_A^2} = \SI{0.96
-    }{\percent}
-\end{equation}
-We know that the sky itself will also contribute a temperature of $T_{\text{sky}} = \SI{2.7}{\kelvin}$ \cite[p. 4]{script}, thus we obtain the final result.
-\begin{equation}
-    T_{\text{measured}} = B T_{\odot} (1-B) T_{\text{sky}} = \SI{58}{\kelvin}
-\end{equation}
-This result is given without error due to the same reasons as in section \ref{sec:ang_res}
+In \cite[p.8-45 fig. 8-34]{kraus} we can see however TODO:
+
+\subsubsection{Influence of elevation angle}
 
 
-\subsection{Influence of elevation angle}
-
-
-\subsection{Doppler shift}
+\subsubsection{Doppler shift}

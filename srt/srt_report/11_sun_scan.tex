@@ -33,7 +33,7 @@ The side bulbs are more visible when the normalizes power is shown logarithmical
 To determine the full width at half maximum (FWHM) we use the high resolution data and fit it to a gaussian.
 The equation describing the functional model is
 \begin{equation}
-    f(\theta)_{\theta_0\;\sigma} = \exp{\left(-\frac{(\theta-\theta_0)^2}{2\sigma^2}\right)}
+    f_{\theta_0\;\sigma}(\theta) = \exp{\left(-\frac{(\theta-\theta_0)^2}{2\sigma^2}\right)}
 \end{equation}.
 The model can then be fitted using iterative least squares as described in \cite{adj_comp}. The FWHM can then be computed using \eqref{eq:FWHM}.
 The resulting values are shown in table \ref{tab:params} and figure \ref{fig:sun_scan_fit}.
