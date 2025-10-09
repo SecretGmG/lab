@@ -60,7 +60,7 @@ In the Milky Way scan plot (figure \ref{fig:mw_spectrum_plot}) we have marked so
 As explained in section ZZZZZ, we get the relation from the relative velocity $v_r$ to the radius $R$ of a radiating object in the galaxy plane in function of the galactic longitude $l_g$ using equation (XXXXXX). We considered the radial velocity as constant $v = v_0$ for all radii $R > 3kpc$, what is true for our positions we discuss. We can transform equation (XXXXX) to get the radius (in units of distance sun$\leftrightarrow$galactic center $R_0$) in function of the relative velocity and the galactic longitude as:
 
 \begin{equation}
-	\frac{R}{R_0}=\frac{v_0\cdot sin(l_g)}{v_0\cdot sin(l_g)-v_r}
+	\frac{R}{R_0}=\frac{v_0\cdot \sin(l_g)}{v_0\cdot \sin(l_g)-v_r}
 \end{equation}
 
 We can directly get $v_r$ from the Doppler shift. As $v_r$ is positive for red-shift, it is calculated as:
@@ -73,11 +73,10 @@ From the hot spots marked in figure \ref{fig:mw_spectrum_plot}, we calculated th
 
 \begin{table}[H]
 \centering \footnotesize
-\begin{tabular}{| l || r | r || r | r |}
-    \hline 
+\begin{tabular}{l r  r  r  r }
+    \toprule
     Point & $l_g$ & $f$ [MHz] & $v_r$ [km/s] & $R/R_0$\\
-    \hline
-    \hline 
+    \midrule
     P1    &  30°  & 1420.00   &  84          & 0.57 \\
     P2    &  40°  & 1420.22   &  38          & 0.79 \\
     P3    &  50°  & 1420.15   &  53          & 0.76 \\
@@ -86,7 +85,7 @@ From the hot spots marked in figure \ref{fig:mw_spectrum_plot}, we calculated th
     P6    & 112°  & 1420.69   & -61          & 1.43 \\
     P7    & 135°  & 1420.72   & -68          & 1.77 \\
     P8    & 150°  & 1420.65   & -53          & 1.92 \\
-    \hline
+    \bottomrule
 \end{tabular}
 \caption{Calculated relative velocities and red-/blue-shifts for points P1...P8.}
 \label{tab:hot_spots}
@@ -113,4 +112,4 @@ We can see that most points are located in spiral arms with mutch higher concent
 	\item P7, P8: Not sure, maybe locations in the outer arm.
 \end{itemize}
 
-TODO (maybe) modelling Perseus arm and show expected red-shift.... 
+TODO (maybe) modelling Perseus arm and show expected red-shift....
