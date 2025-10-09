@@ -1,6 +1,3 @@
-
-\pagebreak
-
 \subsection{Milky Way Scan}
 
 \subsubsection{Observation time}
@@ -112,4 +109,43 @@ We can see that most points are located in spiral arms with mutch higher concent
 	\item P7, P8: Not sure, maybe locations in the outer arm.
 \end{itemize}
 
-TODO (maybe) modelling Perseus arm and show expected red-shift....
+\pagebreak
+
+\subsubsection{Additional Exercise: 2D-Scan of the Milky Way}\label{sec:MW_2D}
+As additional exercise, we tried to perform a 2-dimensional scan of the Milky Way at the 07.10.2025. The idea was to do a scan the Milk Way along the galactic longitude of +10° to +160° with a latitude offset of -30°...+30°, what should be possible after 22:00 MESZ in the night. Unfortunately, we ran in several problems when using the Lab View tool. When the scan passes the zenith, the Lab View tool seems to have problem with the coordinate transformation. Therefore, we had to cut the record of the first scan at galactic longitude of 100° (close to the zenith at this time). To get more data in higher galactic longitudes, we tried a second scan at the 08.10.2025, 03:00 MESZ. This full scan was corrupt, as the SRT did not move, even if the galactic coordinates were correctly counting in the record. 24 hours later, we repeated the second scan successfully (Galactic longitude range: 160°...230°). Figure \ref{fig:mw_2d_polar} shows the scan lines of scan 1 and 2. The corrupted part of scan 1 (100°...160°) is marked red. The scan step size was 2.5° in both directions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{assets/mw2d_polar_plot.png}
+    \caption{Polar plot of the Milky Way 2D scan paths}
+    \label{fig:mw_2d_polar}
+\end{figure}
+
+We were not able to take a new scan of the corrupted section (100°...160° galactic longitude), without the scan passes the zenith or passes the azimuthal restrictions of the SRT. So we kept the corrupted section of the first scan and concatenated the two scans to get the full range of 10° to 230° galactic longitude in a 2-dimensional color plot as shown in figure \ref{fig:mw_2d_plot}. The corrupted section is marked.
+
+\pagebreak
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/mw2d_powermap_edit.png}
+    \caption{Milky Way 2D scan: Galactiv coordinates vs. received power.}
+    \label{fig:mw_2d_plot}
+\end{figure}
+
+We marked some features in the plot to discuss:
+\begin{enumerate}
+	\item The yellow region is the roof of the main building of the University of Bern. The higher power in this region was cut at the maximum power level of the remaining plot to get a better scale.
+	\item We see a trend of the highest emissions in the galactic disc which are in a positive latitude of $\approx$ +5° around the longitude $\approx$ +90°. We find the same trend in the sky survey HI4PI [XXXXX].
+	\item There is a bright region at galactic long./lat. $\approx$ +80°/+5°. This is possibly the galaxy Cygnus A, that is one of the brightest radio sources in the sky. Its center is located at +76°11'/+5°45' (RA/DEC J2000: 19h59m/40°44m), but the galaxy emits over a wider field, as shown in the paper \textit{Important Celestial Radio Sources} [YYYYY].
+	\item The second scan seems somehow corrupted as well. First, we thought the power data was shifted somehow in the map. But, we did a check by applying exactly the same array reshape operations of the recorded data to the galactic coordinates and we found that the galactic coordinates that belongs to the power values are represented correctly in the 2-dimensional color plot (Refer to the data evaluation milky-way.ipynb). Further reasons for the pattern we see could be:
+	\begin{itemize}
+		\item There is still an undetected error in our data evaluation.
+		\item There is a bright source on the ground (outside this plot) and we see its diffraction pattern (red lines).
+		\item There was again a malfunction of the Lab View tool and the recorded power spectra do not belong to the represented. galactic coordinates.
+	\end{itemize}
+\end{enumerate}
+
+
+
+XXXXX: https://www.icrar.org/hi4pi/ \\
+YYYYY: https://reeve.com/Documents/Articles%20Papers/Reeve_CelestialRadioSources.pdf

@@ -1,4 +1,42 @@
 
 \section{Materials and Methods}
-Describe the experimental setup in schematic form.
-Equations should be numbered.
+
+\subsection{Small Radio Telescope (SRT)}
+
+
+\subsection{Lab View Tool}
+sketch, description
+
+\subsubsection{Spectrogram}
+
+Describe Power, bandwidth, arbitrary power units
+
+
+\subsection{Calibration procedure}\label{sec:calib}
+If an absolute value for the brightness temperature of an observed object is required, a calibration is required. As the received power is linearly dependent of the antenna temperature (refer section XXXXX), we can perform a two-point calibration to find the relation. To do this, we need two reference measurements of sources with known temperatures. We can write the linear relation from the antenna temperature to the received power as:
+
+\begin{equation} \label{eq:P_to_Ta}
+	P(T_A) = G \cdot (T_A + T_N)
+\end{equation} 
+
+This equation is similar to equation (5) in [SKRIPT] but we replaced the spectrometers input voltage $U$ with the received power $P$, as the two values are proportional (BLABLA QUADRIERER DEVICE). We have two unknown parameters in equation (\ref{eq:P_to_Ta}); the noise temperature $T_N$ in [K] and the gain of the instrument $G$ in [a.u./K]. For the two-point calibration, we can first point the SRT in a cold region of the sky, where we expect the cold brightness temperature of the cosmic background radiation of $T_c=2.7$ K. Secondly, as a hot reference source, there is a noise diode built in the SRT that radiates a constant brightness temperature of 560 K that is added to the background radiation, resulting in $T_h=\SI{2.7}{K}+\SI{560}{K}=\SI{562.7}{K}$. To find the two unknown parameters, we can solve the equation system...
+
+
+\begin{equation} \label{eq:P_to_Ta_sys}
+	\begin{split}
+		P_c &= G \cdot (T_c + T_N) \\
+		P_h &= G \cdot (T_h + T_N)
+	\end{split}
+\end{equation} 
+
+... for $G$ and $T_N$. We find:
+
+
+\begin{equation} \label{eq:G}
+	G = \frac{P_h-P_c}{T_h-T_c}
+\end{equation} 
+
+\begin{equation} \label{eq:TN}
+	T_N = \frac{T_h P_c-T_c P_h}{P_h-P_c}
+\end{equation} 
+

@@ -1,1 +1,87 @@
-\subsection{Calibration and Sun Temperature}
+\subsection{Calibration and Sun Brightness Temperature}
+To determine the brightness temperature of the sun $T_\odot$, we have to do a two-point calibration first, as described in section \ref{sec:calib}. If the SRT is pointing towards the sun, it may change its temperature rapidly. Therefore, not too much time should be spent between the calibration and the measurement. When we took the measurements (02.10.2025, 12:25...12:30 MESZ), the sun was at Azimuth/Elevation of $\approx$ 165°/38°. We decided to point the SRT to the same elevation at Azimuth 120° to take the calibration reference measurements. Using the same elevation, we expect a similar influence of the earth's ground radiation in both measurements. The Milky Way was outside the observed area. We did following measurement procedure three times:
+
+\begin{enumerate}
+	\item Point SRT to reference position (Az./El.=120°/38°).
+	\item Measure power $P_c$ of cold sky.
+	\item Switch on noise diode, wait until power spectrum stop increasing (few seconds).
+	\item Measure power $P_h$ of noise diode (and cold sky).
+	\item Switch on noise diode, point SRT to sun (Exact position from Lab View Tool)
+	\item Measure power received from sun $P_\odot$
+\end{enumerate}
+
+Recorded Data: \\
+\textit{
+- Measurements/CaibAndSunTemp/SunTemp1\_RefCold\_T1225\_20251002.hdf \\
+- Measurements/CaibAndSunTemp/SunTemp1\_RefHot\_T1225\_20251002.hdf \\
+- Measurements/CaibAndSunTemp/SunTemp1\_Sun\_T1225\_20251002.hdf \\
+- Measurements/CaibAndSunTemp/SunTemp2\_RefCold\_T1228\_20251002.hdf \\
+- Measurements/CaibAndSunTemp/SunTemp2\_RefHot\_T1228\_20251002.hdf  \\
+- Measurements/CaibAndSunTemp/SunTemp2\_Sun\_T1228\_20251002.hdf \\
+- Measurements/CaibAndSunTemp/SunTemp3\_RefCold\_T1230\_20251002.hdf \\
+- Measurements/CaibAndSunTemp/SunTemp3\_RefHot\_T1230\_20251002.hdf \\
+- Measurements/CaibAndSunTemp/SunTemp3\_Sun\_T1230\_20251002.hdf } \\
+ \\
+When we checked the data, we realized that all three cycles delivered almost same values. We evaluated just the data of the first cycle. As we got no uncertainties for the reference temperatures, we assumed a relative error 1\%. Further, we assumed 5\% relative error for the power received. From the reference measurements, we calculated the gain and noise temperature according equations (\ref{eq:G}) and (\ref{eq:TN}). Using fist order Gaussian error propagation, the error for the gain and the noise temperature is calculated as:
+
+\begin{equation}
+	s_{G} = \sqrt{s_{P c}^{2} \left(- \frac{1}{- T_{c} + T_{h}}\right)^{2} + s_{P h}^{2} \left(\frac{1}{- T_{c} + T_{h}}\right)^{2} + s_{T c}^{2} \left(\frac{- P_{c} + P_{h}}{\left(- T_{c} + T_{h}\right)^{2}}\right)^{2} + s_{T h}^{2} \left(- \frac{- P_{c} + P_{h}}{\left(- T_{c} + T_{h}\right)^{2}}\right)^{2}}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+	s_{T_N} = \sqrt{s_{P c}^{2} \left(\frac{T_{h}}{- P_{c} + P_{h}} + \frac{P_{c} T_{h} - P_{h} T_{c}}{\left(- P_{c} + P_{h}\right)^{2}}\right)^{2} + s_{P h}^{2} \left(- \frac{T_{c}}{- P_{c} + P_{h}} - \frac{P_{c} T_{h} - P_{h} T_{c}}{\left(- P_{c} + P_{h}\right)^{2}}\right)^{2} + \hdots } \\
+	\overline{\hdots + s_{T c}^{2} \left(- \frac{P_{h}}{- P_{c} + P_{h}}\right)^{2} + s_{T h}^{2} \left(\frac{P_{c}}{- P_{c} + P_{h}}\right)^{2}}
+	\end{split}
+\end{equation}
+
+Table \ref{tab:calib} shows the measured powers and the evaluated calibration parameters:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l r  r  r  r }
+    \toprule
+    $P_c$ [a.u.] & $P_h$ [a.u.]  & $P_\odot$ [a.u.]  & $G$ [a.u./K]    & $T_N$ [K]\\
+    \midrule
+    $97 \pm 4$   & $545 \pm 27$  & $2700 \pm 100$    & $0.80 \pm 0.05$ & $119 \pm 10$ \\
+    \bottomrule
+\end{tabular}
+\caption{Evaluated calibration parameters}
+\label{tab:calib}
+\end{table}
+
+Using equation (\ref{eq:P_to_Ta}), solved for $T_A$, we can calculate the antenna temperature and its error using first order Gaussian error propagation.
+
+\begin{equation}
+	T_A = \frac{P}{G}-T_N
+\end{equation}
+
+\begin{equation}
+	s_{T_A} = \sqrt{s_P^{2} \left(\frac{1}{G}\right)^{2} + s_{G}^{2} \left(\frac{P_{s}}{G^{2}}\right)^{2} + s_{T_N}^{2}}
+\end{equation}
+
+When the SRT pointed to the sun, we got the antenna temperature:
+\begin{itemize}
+	\item $T_{A,\odot} = (3267 \pm 272)$ K
+\end{itemize}
+
+
+To calculate the brightness temperature of the sun, we first have to calculate the beam filling factor $BFF_\odot$ of the sun. We use the apparent diameter of the sun from Stellarium, what is $\theta_\odot=32'$ (arc minutes) and we consider no error for this value. The solid angle of the sun can be calculated as:
+
+\begin{equation}
+	\Omega_\odot = 4 \pi \sin^2(\frac{\theta_\odot}{4}) \approx \pi \theta_\odot^2/4
+\end{equation}
+
+From the FWHM $\theta$ we found in section \ref{sec:sun_scan}, we can calculate the effective antenna solid angle according equation (\ref{eq:Omega_A_fwhhm}) and we get for the beam filling factor of the sun:
+
+\begin{equation}
+	BFF_\odot = \frac{\Omega_\odot}{\Omega_A} \approx \frac{\pi \theta_\odot^2}{4 \cdot 1.133 \cdot \theta^2} = (1.411\pm0.006)\ \%
+\end{equation}
+
+Finally, the brightness temperature of the sun is the measured antenna temperature, scaled up by $1/BFF_\odot$ what results in:
+
+\begin{equation}
+	T_\odot = \frac{T_{A,\odot}}{BFF_\odot} = (232\pm19)\cdot 10^{3}\ \si{K}
+\end{equation}
+
+This very high brightness temperature is expected as described in section \ref{sec:temp}.
