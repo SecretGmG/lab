@@ -22,7 +22,7 @@ and the definitions of the effective area and the geometric area \cite[p. 148]{w
 \begin{equation}
     A_e = \eta A_g \qquad A_g = \pi \left( \frac{d}{2} \right)^2 \label{eq:A_e}
 \end{equation}
-we can then solve for the effective antenna area.
+we can then solve for the antenna beam solid angle.
 \begin{equation}
     \Omega_A = \frac{\lambda^2}{A_g \eta} \label{eq:Omega_A}
 \end{equation}
@@ -38,9 +38,9 @@ To compute an approximation of the full width at half maximum $\theta$ (FWHM) we
 \end{equation}
 using Eq. \eqref{eq:gauss_integral} and Eq. \eqref{eq:fwhm_sigma} we can solve for $\Omega_A$ in terms of $\theta$
 \begin{equation}
-    \Omega_A = \frac{\pi}{4\ln{2}} \theta \approx 1.133 \, \theta^2 \label{eq:Omega_A_fwhhm}
+    \Omega_A = \frac{\pi}{4\ln{2}} \theta^2 \approx 1.133 \, \theta^2 \label{eq:Omega_A_fwhhm}
 \end{equation}
-Notice that this is consistent with \cite[p.178 (8.13)]{wilson_tools_2009}
+Notice that this is consistent with \cite[Eq. (8.13)]{wilson_tools_2009}
 
 Equating Eq. \eqref{eq:Omega_A} and Eq. \eqref{eq:Omega_A_fwhhm} and then solving for $\theta$ we get an expression for the expected FWHM.
 \begin{equation}
@@ -67,9 +67,64 @@ We can then obtain the values shown in Table \ref{tab:ang_res}.
 \end{table}
 \subsubsection{Antenna, brightness and noise temperature}
 
-\subsubsection{Temperature conversion}
+The spectral radiance of a black body can be described by the Rayleigh-Jeans law for low frequencies ($\nu \ll T$) \cite[Eq. (3)]{srt}
+\begin{equation}
+    I_\nu = \frac{2\nu^2}{c^2}k_{B}T \label{eq:rayleigh_jeans}
+\end{equation}
+Using Eq.~\eqref{eq:rayleigh_jeans}, the brightness temperature $T_B$ can be defined as the temperature that produces the observed spectral radiance at a given frequency:
+\begin{equation}
+    T_B = \frac{c^2}{2\nu^2k_{B}} I_\nu
+\end{equation}
 
-\subsubsection{Expected temperature of the sun}\label{sec:temp}
+An antenna measures power rather than intensity. The received spectral power is given by
+\begin{equation}
+    P_\nu = A_e I_\nu,
+\end{equation}
+where $A_e$ is the effective area of the antenna. Substituting $I_\nu$ from Eq.~\eqref{eq:rayleigh_jeans} yields
+\begin{equation}
+    P_\nu = A_e \frac{2\nu^2 k_B}{c^2} T_B.
+\end{equation}
+
+The antenna response is not uniform over the sky but described by the normalized antenna pattern $P_n(\theta, \phi)$,
+\begin{equation}
+    \int_{4\pi} P_n(\theta, \phi) \, d\Omega = 1.
+\end{equation}
+The antenna temperature $T_A$ is defined as the equivalent brightness temperature that would produce the same received power as the actual sky brightness distribution $T_B(\theta, \phi)$:
+\begin{equation}
+    T_A = \int_{4\pi} P_n(\theta, \phi) \, T_B(\theta, \phi) \, d\Omega.
+\end{equation}
+It represents the sky-averaged brightness temperature weighted by the antenna beam pattern.
+
+In addition to the sky signal, the receiver introduces intrinsic noise, characterized by the noise temperature $T_N$. The total system noise, expressed as the system temperature, is then
+\begin{equation}
+    T_\text{sys} = T_A + T_N.
+\end{equation}
+
+\subsubsection{Temperature conversion}\label{sec:antenna_temp}
+The goal is to find a way to compute the antenna temperature from the voltage output of the spectrometer.
+It is important to note that this voltage is proportional to power received by the antenna and thus proportional to the antenna temperature.
+Because of this linear relationship it is possible to relate the gain $G$, voltage output $U$, noise temperature $T_N$ and antenna temperature $T_A$. \cite[Eq. (5)]{srt}
+\begin{equation}
+    U(T_A) = G(T_A + T_N) \label{eq:U_from_T}
+\end{equation}
+What is now left is to find a procedure to determine $G$ and $T_N$. This is done by observing two different radiation sources which will result in known antenna temperatures. Lets call these temperatures $T_\text{hot}$ and $T_\text{cold}$ and their resulting voltages $U_\text{hot}$ and $T_\text{cold}$ respectively.
+With these measurements it is now easy to find the relevant expressions for $G$ and $T_N$.
+We can then use Eq. \eqref{eq:U_from_T} to build a linear system of equations with the measured values.
+\begin{equation} \label{eq:P_to_Ta_sys}
+	\begin{split}
+		U_\text{cold} &= G \cdot (T_\text{cold} + T_N) \\
+		U_\text{hot} &= G \cdot (T_\text{hot} + T_N)
+	\end{split}
+\end{equation}
+The only unknown quantities are then the noise temperature $T_N$ with units [K] and the gain of the instrument $G$ with units [V/K].
+These can be solved for.
+\begin{align}
+	G &= \frac{U_h-U_c}{T_h-T_c}\label{eq:G}\\
+	T_N &= \frac{T_h U_c-U_c U_h}{U_h-U_c}\label{eq:TN}
+\end{align}
+Because the parameters $G$ and $T_N$ can change over time it is important to frequently calibrate the antenna. The procedure can also fail if the sources of the known temperatures are not reliable, or if the assumption that the relationship between the output voltage and the antenna temperature is linear does not hold.
+
+\subsubsection{Expected temperature of the sun}\label{sec:sun_temp}
 If we assume that the sun is a black body at the wavelength of \SI{1.42}{\giga\hertz} we expect the sun to have a brightness temperature of $T_{\odot} = \SI{5778}{\kelvin}$ \cite[p. 211]{durandi_formeln_2011}.
 In Figure \ref{fig:sun_temp_theory} we can see however, that the sun has a brightness temperature of 100'000 \si{\kelvin} up to 10 million \si{\kelvin}.
 \begin{figure}[H]
@@ -83,9 +138,9 @@ In Figure \ref{fig:sun_temp_theory} we can see however, that the sun has a brigh
 At a frequency of \SI{1.42}{\giga\hertz} we don't expect a significant influence of the elevation angle on the measured brightness temperature, since the atmosphere is transparent at this wavelength.
 The frequency of \SI{22}{\giga\hertz} is however very close to an absorption band caused by water vapor \ce{H_2O} at \SI{22.2}{\giga\hertz}.
 We can make a reasonable but naive model of the attenuation at this frequency by considering that the attenuation is exponential in the distance traveled through the atmosphere.
-Ignoring the curvature of the earth, the distance traveled through the atmosphere can be computed trigonometrically. We can then model the attenuation $\alpha$ with Eq.\eqref{eq:attenuation}.
+Ignoring the curvature of the earth, the distance traveled through the atmosphere can be computed trigonometrically. We can then model the transmission coefficient $\tau$ with Eq.\eqref{eq:attenuation}.
 \begin{equation}
-    \alpha = C_1 \exp{\left( - C_2 \frac{1}{\abs{\cos{\theta}}} \right)} \label{eq:attenuation}
+    \tau = C_1 \exp{\left( - C_2 \frac{1}{\abs{\cos{\theta}}} \right)} \label{eq:attenuation}
 \end{equation}
 
 \subsubsection{Doppler shift}

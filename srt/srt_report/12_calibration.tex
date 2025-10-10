@@ -1,7 +1,7 @@
 \subsection{Calibration and Sun Brightness Temperature}
-To determine the brightness temperature of the sun $T_\odot$, we have to do a two-point calibration first, as described in section \ref{sec:calib}. 
-If the SRT is pointing towards the sun, it may change its temperature rapidly. Therefore, not too much time should be spent between the calibration and the measurement. 
-When we took the measurements (02.10.2025, 12:25 - 12:30 MESZ), the sun was at Azimuth/Elevation of $\approx$ 165°/38°. 
+To determine the brightness temperature of the sun $T_\odot$, we have to do a two-point calibration first, as described in section \ref{sec:antenna_temp}.
+If the SRT is pointing towards the sun, it may change its temperature rapidly. Therefore, not too much time should be spent between the calibration and the measurement.
+When we took the measurements (02.10.2025, 12:25 - 12:30 MESZ), the sun was at Azimuth/Elevation of $\approx$ 165°/38°.
 We decided to point the SRT to the same elevation at Azimuth 120° to take the calibration reference measurements. Using the same elevation, we expect a similar influence of the earth's ground radiation in both measurements. 
 The Milky Way was outside the observed area. We did following measurement procedure three times:
 
@@ -54,7 +54,7 @@ Table \ref{tab:calib} shows the measured powers and the evaluated calibration pa
 \label{tab:calib}
 \end{table}
 
-Using equation (\ref{eq:P_to_Ta}), solved for $T_A$, we can calculate the antenna temperature and its error using first order Gaussian error propagation.
+Using Eq. \eqref{eq:U_from_T}, solved for $T_A$, we can calculate the antenna temperature and its error using first order Gaussian error propagation.
 
 \begin{equation}
 	T_A = \frac{P}{G}-T_N
@@ -66,7 +66,7 @@ Using equation (\ref{eq:P_to_Ta}), solved for $T_A$, we can calculate the antenn
 
 When the SRT pointed to the sun, we got the antenna temperature:
 \begin{itemize}
-	\item $T_{A,\odot} = (3267 \pm 272)$ K
+	\item $T_{A,\odot} = \SI{3267(272)}{K}$
 \end{itemize}
 
 
@@ -85,7 +85,7 @@ From the FWHM $\theta$ we found in section \ref{sec:sun_scan}, we can calculate 
 Finally, the brightness temperature of the sun is the measured antenna temperature, scaled up by $1/BFF_\odot$ what results in:
 
 \begin{equation}
-	T_\odot = \frac{T_{A,\odot}}{BFF_\odot} = (232\pm19)\cdot 10^{3}\ \si{K}
+	T_\odot = \frac{T_{A,\odot}}{BFF_\odot} = /SI{232(19)e3}{K}
 \end{equation}
 
-This very high brightness temperature is expected as described in section \ref{sec:temp}.
+This brightness temperature is consistent with our discussion in section \ref{sec:sun_temp}.

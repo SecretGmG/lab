@@ -2,43 +2,22 @@
 \section{Materials and Methods}
 
 \subsection{Small Radio Telescope (SRT)}
+All measurements were performed using the small radio telescope located on top of the ExWi building.
+It has a parabolic dish with a diameter of \SI{4}{m} and a feedhorn antenna. This causes main and side lobes, where the shape of the main lobe can be approximates as Gaussian.
 
+\subsubsection{Signal Processing}
+TODO: insert sketch with the process
+
+TODO: explain signal process chain
+
+Therefore output of the Fourier transform are therefore amplitude densities with units of [\si{\volt/\hertz}]. This value is proportional to the power density and its integration is proportional to the power.
+This can lead to confusion if we denote axes in figures with units of Volts even though their physical interpretation should be as a value of Power.
+For the rest of this report we will denote the unit of this amplitude in arbitrary units [\si{a.u.}] and the spectral amplitude density with units of [\si{a.u./\hertz}].
+We will also use the symbol $P$ to denote such values to better convey the physical meaning.
 
 \subsection{Lab View Tool}
 sketch, description
 
-\subsubsection{Spectrogram}
-
-Describe Power, bandwidth, arbitrary power units
-
-
-\subsection{Calibration procedure}\label{sec:calib}
-If an absolute value for the brightness temperature of an observed object is required, a calibration is required. As the received power is linearly dependent of the antenna temperature (refer section XXXXX), we can perform a two-point calibration to find the relation. To do this, we need two reference measurements of sources with known temperatures. We can write the linear relation from the antenna temperature to the received power as:
-
-\begin{equation} \label{eq:P_to_Ta}
-	P(T_A) = G \cdot (T_A + T_N)
-\end{equation} 
-
-This equation is similar to \cite[Eq. (5)]{srt} but we replaced the spectrometers input voltage $U$ with the received power $P$, as the two values are proportional (BLABLA QUADRIERER DEVICE). We have two unknown parameters in equation (\ref{eq:P_to_Ta}); the noise temperature $T_N$ in [K] and the gain of the instrument $G$ in [a.u./K]. For the two-point calibration, we can first point the SRT in a cold region of the sky, where we expect the cold brightness temperature of the cosmic background radiation of $T_c=2.7$ K. Secondly, as a hot reference source, there is a noise diode built in the SRT that radiates a constant brightness temperature of 560 K that is added to the background radiation, resulting in $T_h=\SI{2.7}{K}+\SI{560}{K}=\SI{562.7}{K}$. To find the two unknown parameters, we can solve the equation system...
-
-
-\begin{equation} \label{eq:P_to_Ta_sys}
-	\begin{split}
-		P_c &= G \cdot (T_c + T_N) \\
-		P_h &= G \cdot (T_h + T_N)
-	\end{split}
-\end{equation} 
-
-... for $G$ and $T_N$. We find:
-
-
-\begin{equation} \label{eq:G}
-	G = \frac{P_h-P_c}{T_h-T_c}
-\end{equation} 
-
-\begin{equation} \label{eq:TN}
-	T_N = \frac{T_h P_c-T_c P_h}{P_h-P_c}
-\end{equation} 
 
 \subsection{Measurement data and Code}
 All data and code used in this report are available in a public repository\footnote{\url{https://github.com/SecretGmG/lab/tree/main/srt}}.

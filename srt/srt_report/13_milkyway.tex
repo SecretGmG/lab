@@ -1,14 +1,14 @@
 \subsection{Milky Way Scan}
 
 \subsubsection{Observation time}
-From our observation spot in Bern, we had to plan the observation time to get the best possible overview of the Milky Way with a wide range in the galactic longitude. In October, when we did this measurments, the maximum elevation of the galactic center is around 13° (in south) at 18:30 MESZ. However, limitations in the field of view of the SRT had to be considered to choose the best observation time:
+From our observation spot in Bern, we had to plan the observation time to get the best possible overview of the Milky Way with a wide range in the galactic longitude. In October, when we did this measurements, the maximum elevation of the galactic center is around 13° (in south) at 18:30 MESZ. However, limitations in the field of view of the SRT had to be considered to choose the best observation time:
 
 \begin{itemize}
-    \item At 18:30 MESZ, the galactic center ($l_g=\SI{0}{\degree}$) could be included in the scan but at galactic longitudes of $l_g>\SI{120}{\degree}$, the SRT run in the lower azimuth limit from EXWI building at around 40° (north east).
+    \item At 18:30 MESZ, the galactic center ($l_g=\SI{0}{\degree}$) could be included in the scan but at galactic longitudes of $l_g>\SI{120}{\degree}$, the SRT run in the lower azimuth limit from ExWi building at around 40° (north east).
     \item At later times, the galactic center is already descending and but the higher galactic longitudes are moving inside visible area of the SRT.
     \item At 22:00 MESZ, the galactic center is at the horizon and no more visible but the galactic plane is almost perpendicular to the horizontal plane and it is in the visible area of the SRT up to galactic longitude $l_g=\SI{180}{\degree}$. Only limitation is the main building of the University Bern, that covers the view partially. We decided to do the scan at this time. 
 \end{itemize}
-    
+
 The scan path is illustrated in figure \ref{fig:mw_scan_stellarium}. We chose the scan path start at galactic longitude of 10° and end at 170° to avoid lower elevations than 10° as the noise level of the ground thermal radiation is dominating there.
 
 
@@ -20,7 +20,8 @@ The scan path is illustrated in figure \ref{fig:mw_scan_stellarium}. We chose th
 \end{figure}
 
 \subsubsection{Measurement}
-It was hard to find out, how to correctly set up the Lab View tool for a Milky Way scan, as the angular range input fields belong to azimuthal coordinates rather than galactic. Finally we found, that the tool uses wrong (mirrored) galactic coordinates (correct longitude is $l_g=\SI{360}{\degree}-l_{srt}$ to enter in the azimuth fields. We chose a step size of $\Delta l_g=\SI{0.25}{\degree}$ with 1000 ms integration time what resulted in a measurement time of 28 min to scan from 10° to 170° in galactic coordinates. Figure \ref{fig:mw_scan_polar} shows the scan path in a polar diagram:
+It was hard to find out, how to correctly set up the Lab View tool for a Milky Way scan, as the angular range input fields belong to azimuthal coordinates rather than galactic. 
+Finally we found, that the tool uses wrong (mirrored) galactic coordinates (correct longitude is $l_g=\SI{360}{\degree}-l_{srt}$ to enter in the azimuth fields). We chose a step size of $\Delta l_g=\SI{0.25}{\degree}$ with 1000 ms integration time what resulted in a measurement time of 28 min to scan from 10° to 170° in galactic coordinates. Figure \ref{fig:mw_scan_polar} shows the scan path in a polar diagram:
 
 \begin{figure}[H]
     \centering
@@ -52,7 +53,7 @@ We can identify following features in the spectrum plot:
 
 
 \subsubsection{Additional Exercise: Source determination of the hot spots}\label{sec:HotSpots}
-In the Milky Way scan plot (figure \ref{fig:mw_spectrum_plot}) we have marked some hot spots of higher radiation. We tried to determine the sources of these spots in the Milky Way galactic disc. We have marked just spots with high red-/blue-shifts since a low shift results in very high inaccuracy in further calculations. \\
+In the Milky Way scan plot (Figure \ref{fig:mw_spectrum_plot}) we have marked some hot spots of higher radiation. We tried to determine the sources of these spots in the Milky Way galactic disc. We have marked just spots with high red-/blue-shifts since a low shift results in very high inaccuracy in further calculations. \\
  \\
 As explained in section ZZZZZ, we get the relation from the relative velocity $v_r$ to the radius $R$ of a radiating object in the galaxy plane in function of the galactic longitude $l_g$ using equation (XXXXXX). We considered the radial velocity as constant $v = v_0$ for all radii $R > 3kpc$, what is true for our positions we discuss. We can transform equation (XXXXX) to get the radius (in units of distance sun$\leftrightarrow$galactic center $R_0$) in function of the relative velocity and the galactic longitude as:
 
@@ -97,7 +98,7 @@ According $l_g$ and $R/R_0$ from table \ref{tab:hot_spots}, we evaluated the sou
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{assets/MW_ROI_spots.png}
-    \caption{Bla, Referenz XXXXXX}
+    \caption{Bla, \cite{staff_astrophysicists_2016}}
     \label{fig:mw_roi_spots}
 \end{figure}
 
@@ -136,7 +137,7 @@ We marked some features in the plot to discuss:
 \begin{enumerate}
 	\item The yellow region is the roof of the main building of the University of Bern. The higher power in this region was cut at the maximum power level of the remaining plot to get a better scale.
 	\item We see a trend of the highest emissions in the galactic disc which are in a positive latitude of $\approx$ +5° around the longitude $\approx$ +90°. We find the same trend in the sky survey HI4PI [XXXXX].
-	\item There is a bright region at galactic long./lat. $\approx$ +80°/+5°. This is possibly the galaxy Cygnus A, that is one of the brightest radio sources in the sky. Its center is located at +76°11'/+5°45' (RA/DEC J2000: 19h59m/40°44m), but the galaxy emits over a wider field, as shown in the paper \textit{Important Celestial Radio Sources} [YYYYY].
+	\item There is a bright region at galactic long./lat. $\approx$ +80°/+5°. This is possibly the galaxy Cygnus A, that is one of the brightest radio sources in the sky. Its center is located at +76°11'/+5°45' (RA/DEC J2000: 19h59m/40°44m), but the galaxy emits over a wider field, as shown \cite{noauthor_reeve_celestialradiosources_nodate}.
 	\item The second scan seems somehow corrupted as well. First, we thought the power data was shifted somehow in the map. But, we did a check by applying exactly the same array reshape operations of the recorded data to the galactic coordinates and we found that the galactic coordinates that belongs to the power values are represented correctly in the 2-dimensional color plot (Refer to the data evaluation milky-way.ipynb). Further reasons for the pattern we see could be:
 	\begin{itemize}
 		\item There is still an undetected error in our data evaluation.
@@ -144,8 +145,3 @@ We marked some features in the plot to discuss:
 		\item There was again a malfunction of the Lab View tool and the recorded power spectra do not belong to the represented. galactic coordinates.
 	\end{itemize}
 \end{enumerate}
-
-
-
-XXXXX: https://www.icrar.org/hi4pi/ \\
-YYYYY: https://reeve.com/Documents/Articles%20Papers/Reeve_CelestialRadioSources.pdf

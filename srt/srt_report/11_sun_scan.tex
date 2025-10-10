@@ -4,7 +4,7 @@ A step size of \SI{0.5}{\degree} with a total scan width of \SI{20}{\degree} and
 For each of the settings we performed a horizontal and a vertical scan centered around the sun.
 The integrated power spectra are then each normalized by subtracting the minimum and then dividing with the (new) maximum.
 These normalized values are shown in figure~\ref{fig:sun_scan}.
-When we took the measurements (02.10.2025, 11:20 - 11:40 MESZ), the sun was at Azimuth/Elevation of $\approx$ 145°/33°.
+Measurements were performed on (02.10.2025, 11:20 - 11:40 MESZ), the sun was at Azimuth/Elevation of $\approx$ 145°/33°.
 
 Recorded Data: \\
 \textit{
@@ -25,7 +25,7 @@ Recorded Data: \\
     \label{fig:sun_scan}
 \end{figure}
 
-The side bulbs are more visible when the normalizes power is shown logarithmically, this is shown in figure~\ref{fig:sun_scan_log}
+The sidelobes are more visible when the normalized power is shown logarithmically, this is shown in figure~\ref{fig:sun_scan_log}
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.45\linewidth}
@@ -39,20 +39,18 @@ The side bulbs are more visible when the normalizes power is shown logarithmical
 \end{figure}
 
 To determine the full width at half maximum (FWHM) we use the high resolution data and fit it to a gaussian.
-The equation describing the functional model is
+The functional model is therefore described by the equation $f_{\theta_0\;\sigma}(\theta)$.
 \begin{equation}
-    f_{\theta_0\;\sigma}(\theta) = \exp{\left(-\frac{(\theta-\theta_0)^2}{2\sigma^2}\right)}
-\end{equation}.
+    f_{\theta_0, \sigma}(\theta) = \exp{\left(-\frac{(\theta-\theta_0)^2}{2\sigma^2}\right)}
+\end{equation}
 The model can then be fitted using iterative least squares as described in \cite{ghilani_adjustment_2006}. The FWHM can then be computed using Eq. \eqref{eq:fwhm_sigma}.
 The resulting values are shown in table \ref{tab:params} and figure \ref{fig:sun_scan_fit}.
-
-TODO: Some values missing ****************************
 
 \begin{table}[H]
     \centering
     \begin{tabular}{lrrr}
         \toprule
-        Direction & FWHM [\si{\degree}]& $ \sigma$ [\si{\degree}] & $ \theta_0 $ [\si{\degree}]\\
+        Direction & FWHM [\si{\degree}] & $ \theta_0 $ [\si{\degree}]\\
         \midrule
         Horizontal & \SI{3.72(0.01)}{} & \SI{0.179(0.006)}{}\\
         Vertical & \SI{3.751(0.009)}{} & \SI{-0.131(0.005)}{}\\
@@ -89,8 +87,8 @@ We think the reason for this discrepancy is a combination of
     \item Invalid assumption that the solid angle that is not in the main bulb is negligible.
     \item Invalid assumption that the contribution from the integral in Eq. \eqref{eq:gauss_integral} of the gaussian with $\theta > \pi$ is negligible.
 \end{itemize}
-Of these we think that the uncertainty in $\eta$ has the biggest contribution to the error. Using Eq. \eqref{eq:fwhm},the average FWHM, a carrier frequency of \SI{1.4204}{\mega \hertz} and antenna diameter of \SI{4}{m}
-we can compute an antenna efficiency that would be consistent with our measurements. We get $\eta = \SI{0.735(0.003)}{}$.
+Of these we think that the uncertainty in $\eta$ has the biggest contribution to the error. Using Eq. \eqref{eq:fwhm},the average FWHM, a carrier frequency of \SI{1.4204}{\giga \hertz} and antenna diameter of \SI{4}{m}
+We can compute an inferred antenna efficiency which would be consistent with our measurements. This would have a value of $\eta = \SI{0.735(0.003)}{}$.
 
 The pointing offset, i.e. the difference between the optical direction of the telescope and the geometrical direction can also be simply read from these fits, as the values of $\theta_0$ in the horizontal and vertical directions.
 TODO: figure out in which direction the telescope would need to be adjusted, i don't understand the coordinate system enough for that :(
