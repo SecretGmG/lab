@@ -37,7 +37,7 @@ The equation describing the functional model is
 \begin{equation}
     f_{\theta_0\;\sigma}(\theta) = \exp{\left(-\frac{(\theta-\theta_0)^2}{2\sigma^2}\right)}
 \end{equation}.
-The model can then be fitted using iterative least squares as described in \cite{ghilani_adjustment_2006}. The FWHM can then be computed using \eqref{eq:fwhm_sigma}.
+The model can then be fitted using iterative least squares as described in \cite{ghilani_adjustment_2006}. The FWHM can then be computed using Eq. \eqref{eq:fwhm_sigma}.
 The resulting values are shown in table \ref{tab:params} and figure \ref{fig:sun_scan_fit}.
 
 TODO: Some values missing ****************************
@@ -81,10 +81,10 @@ We think the reason for this discrepancy is a combination of
     \item Unknown errors in the given constants $d = \SI{4}{m}$ and $\eta = 0.5$, especially $\eta$ since it is not trivial to measure.
     \item Invalid assumption that the main bulb is gaussian.
     \item Invalid assumption that the solid angle that is not in the main bulb is negligible.
-    \item Invalid assumption that the contribution from the integral in \eqref{eq:gauss_integral} of the gaussian with $\theta > \pi$ is negligible.
+    \item Invalid assumption that the contribution from the integral in Eq. \eqref{eq:gauss_integral} of the gaussian with $\theta > \pi$ is negligible.
 \end{itemize}
-Of these we think that the uncertainty in $\eta$ has the biggest contribution to the error. Using \eqref{eq:fwhm},the average FWHM, a carrier frequency of \SI{1.4204}{\mega \hertz} and antenna diameter of \SI{4}{m}
-we can compute an antenna efficiency that would be consistent with our measurements. We get $\eta = \SI{0.735(0.003)}{}$ \\
- \\
-TODO: Pointing offset ****************************************
+Of these we think that the uncertainty in $\eta$ has the biggest contribution to the error. Using Eq. \eqref{eq:fwhm},the average FWHM, a carrier frequency of \SI{1.4204}{\mega \hertz} and antenna diameter of \SI{4}{m}
+we can compute an antenna efficiency that would be consistent with our measurements. We get $\eta = \SI{0.735(0.003)}{}$.
 
+The pointing offset, i.e. the difference between the optical direction of the telescope and the geometrical direction can also be simply read from these fits, as the values of $\theta_0$ in the horizontal and vertical directions.
+TODO: figure out in which direction the telescope would need to be adjusted, i don't understand the coordinate system enough for that :(
