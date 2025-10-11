@@ -4,7 +4,7 @@
 The \SI{21}{cm} \ce{H_I}-Line refers to electromagnetic radiation emitted from atomic hydrogen. It has a wavelength of \SI{21.11}{cm} (that is \SI{1420.03}{\mega\hertz}) \cite[Ch 3.1]{srt}.
 
 This emission is caused by a transition from the $\ce{S_{\frac{1}{2}}(F=1)}$ to the $\ce{S_{\frac{1}{2}}(F=0)}$ state, meaning that the nuclear spin and electron spin transition from parallel to antiparallel.
-The $\ce{S_{\frac{1}{2}}(F=1)}$-state has a half live of about 8 million years, but the sheer amount of atomic hydrogen makes the line visible nonetheless. \cite[Ch. 13.1]{wilson_tools_2009}
+The $\ce{S_{\frac{1}{2}}(F=1)}$ state has a half-life of about 8 million years, but the line is observable due to the large column density of atomic hydrogen in the interstellar medium. \cite[Ch. 13.1]{wilson_tools_2009}
 
 The main reason for interest in specifically this frequency is the aforementioned atomic hydrogen, but there are other sources that can emit at this wavelength, some of them are: \cite[11.1-11.4]{wilson_tools_2009}
 \begin{itemize}
@@ -107,7 +107,7 @@ Because of this linear relationship it is possible to relate the gain $G$, volta
 \begin{equation}
     U(T_A) = G(T_A + T_N) \label{eq:U_from_T}
 \end{equation}
-What is now left is to find a procedure to determine $G$ and $T_N$. This is done by observing two different radiation sources which will result in known antenna temperatures. Lets call these temperatures $T_\text{hot}$ and $T_\text{cold}$ and their resulting voltages $U_\text{hot}$ and $T_\text{cold}$ respectively.
+What is now left is to find a procedure to determine $G$ and $T_N$. This is done by observing two different radiation sources which will result in known antenna temperatures. Let's call these temperatures $T_\text{hot}$ and $T_\text{cold}$ and their resulting voltages $U_\text{hot}$ and $T_\text{cold}$ respectively.
 With these measurements it is now easy to find the relevant expressions for $G$ and $T_N$.
 We can then use Eq. \eqref{eq:U_from_T} to build a linear system of equations with the measured values.
 \begin{equation} \label{eq:P_to_Ta_sys}
@@ -120,13 +120,13 @@ The only unknown quantities are then the noise temperature $T_N$ with units [K] 
 These can be solved for.
 \begin{align}
 	G &= \frac{U_h-U_c}{T_h-T_c}\label{eq:G}\\
-	T_N &= \frac{T_h U_c-U_c U_h}{U_h-U_c}\label{eq:TN}
+	T_N &= \frac{T_h U_c-T_c U_h}{U_h-U_c}\label{eq:TN}
 \end{align}
 Because the parameters $G$ and $T_N$ can change over time it is important to frequently calibrate the antenna. The procedure can also fail if the sources of the known temperatures are not reliable, or if the assumption that the relationship between the output voltage and the antenna temperature is linear does not hold.
 
 \subsubsection{Expected temperature of the sun}\label{sec:sun_temp}
-If we assume that the sun is a black body at the wavelength of \SI{1.42}{\giga\hertz} we expect the sun to have a brightness temperature of $T_{\odot} = \SI{5778}{\kelvin}$ \cite[p. 211]{durandi_formeln_2011}.
-In Figure \ref{fig:sun_temp_theory} we can see however, that the sun has a brightness temperature of 100'000 \si{\kelvin} up to 10 million \si{\kelvin}.
+We might naively expect the brightness temperature of the sun to be equal to its surface temperature $T_{\odot} = \SI{5778}{\kelvin}$ \cite[p. 211]{durandi_formeln_2011}. But this is wrong, because the sun doesn't behave itself like a black body at these frequencies.
+In Figure \ref{fig:sun_temp_theory} we can see, that the sun has a brightness temperature of 100'000 \si{\kelvin} up to 10 million \si{\kelvin}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{assets/SunBrightnessTheory.png}
@@ -142,6 +142,9 @@ Ignoring the curvature of the earth, the distance traveled through the atmospher
 \begin{equation}
     \tau = C_1 \exp{\left( - C_2 \frac{1}{\abs{\cos{\theta}}} \right)} \label{eq:attenuation}
 \end{equation}
+Where $C_1$ and $C_2$ depend on the absorption coefficient of \ce{H_2O} at \SI{22.2}{\giga\hertz} and the thickness of the atmosphere.
+
+
 
 \subsubsection{Doppler shift}
 

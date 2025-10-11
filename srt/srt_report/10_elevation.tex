@@ -2,15 +2,20 @@
 We performed an elevation scan from the horizon \SI{10}{\degree} to the zenith \SI{90}{\degree} at different  azimuth angles.
 We chose an angular step size of \SI{0.25}{\degree}. This step size was chosen as a compromise between measurement time and angular resolution.
 For these measurements we made sure that the sun does not cross the scan path.
-One set of measurements was performed at night (07.10.2025 21:50 - 22:20 MESZ) and the other during the day (08.10.2025 11:30 - 11:50 MESZ)
+One set of measurements was performed at night (07.10.2025 21:50 - 22:20 MESZ) and the other during the day (08.10.2025 11:30 - 11:50 MESZ).
+
 Recorded Data:
-\textit{
-- Measurements/ElevationScan/ElevationScan\_T2150\_Az90\_20251007.hdf\\
-- Measurements/ElevationScan/ElevationScan\_T2205\_Az180\_20251007.hdf\\
-- Measurements/ElevationScan/2ndScanAtDay\_noMilkyWay/ElevationScan\_T1135\_Az90\_20251008.hdf\\
-- Measurements/ElevationScan/2ndScanAtDay\_noMilkyWay/\\
-\phantom{- Measurements/}ElevationScan\_T1100\_Az180\_20251008\_use\_lower\_half\_idx.hdf\\
-}
+
+\begin{itemize}
+    \item \path{Measurements/ElevationScan/ElevationScan_T2150_Az90_20251007.hdf}
+    \item \path{Measurements/ElevationScan/ElevationScan_T2205_Az180_20251007.hdf}
+    \item \path{Measurements/ElevationScan/2ndScanAtDay_noMilkyWay/ElevationScan_T1135_Az90_20251008.hdf}
+    \item \path{Measurements/ElevationScan/2ndScanAtDay_noMilkyWay/ElevationScan_T1100_Az180_20251008_use_lower_half_idx.hdf}
+\end{itemize}
+
+As we are performing only a qualitative analysis, we do not discuss measurement errors here. We observe that the signal is stronger at low elevations for both day and night scans. Additionally, during the night, the signal increases toward the zenith, consistent with the Milky Way being near the zenith at the time of observation.
+The periodic behavior seen at low elevations, which shows no phase offset across azimuth angles, is likely caused by sidelobes picking up ground interference.
+
 \begin{figure}[H]
 \centering
 \begin{subfigure}[t]{0.45\textwidth}
@@ -26,33 +31,3 @@ Recorded Data:
 \caption{Elevation Scans at different times of the day}
 \label{fig:elev_scan}
 \end{figure}
-
-%We notice that, both during the day and at night, the signal is stronger for low elevations. During the night we notice that additionally the signal gets stronger as we approach the zenith.
-
-%To investigate this further we looked at the celestial bodies that where near the zenith during that time. A screenshot of this, taken in Stellarium is shown in figure \ref{fig:stellarium}. We notice, that the milky way is in the zenith during our time of measurement.
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.6\linewidth]{assets/ElevationScan_Az90_Az180_251001_2220MESZ.png}
-%    \caption{View of the sky at \texttt{01.10.2025 22:20 MESZ}}
-%    \label{fig:stellarium}
-%\end{figure}
-
-%In figure \ref{fig:elev_spectra} we plot the Spectral power density both at day and night for an elevation where near the minima shown in figure \ref{fig:elev_scan}. We notice that during the day the spectra are a close match, and during the night we have a source with a frequency near the Carrier frequency, this would match with the \ce{H_I} we expect to be present in the milky-way.
-
-%Because of this we think that the increase in Power that is only observed during the night is caused by the scan path intercepting the milky-way near the zenith.
-%\begin{figure}[H]
-%\centering
-%\begin{subfigure}[t]{0.45\textwidth}
-%    \centering
-%    \includegraphics[width=\linewidth]{assets/elev_spectrum_night.png}
-%    \caption{Spectra for two different elevations\\ \texttt{01.10.2025 22:35 MESZ}}
-%\end{subfigure}
-%\begin{subfigure}[t]{0.45\textwidth}
-%    \centering
-%    \includegraphics[width=\linewidth]{assets/elev_spectrum_day.png}
-%    \caption{Spectra for two different elevations\\ \texttt{02.10.2025 13:00 MESZ}}
-%\end{subfigure}
-%\caption{Spectra at different Elevations and different times of the day}
-%\label{fig:elev_spectra}
-%\end{figure}
